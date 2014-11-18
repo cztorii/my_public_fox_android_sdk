@@ -66,7 +66,7 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 ### メタデータの設定
 
 |パラメータ名|必須|概要|
-|:------||:------||:------|
+|:------|:------|:------|
 |APPADFORCE_APP_ID|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
 |APPADFORCE_SERVER_URL|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
 |APPADFORCE_CRYPTO_SALT|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
