@@ -126,9 +126,9 @@ onCreate() {
 
 ```
 
-sendConversionの引数には、通常は上記の通り@"default"という文字列を入力してください。
+sendConversionの引数には、通常は上記の通り"default"という文字列を入力してください。
 
-[sendConversion:の詳細](./doc/send_conversion/ja/)
+[sendConversionの詳細](./doc/send_conversion/ja/)
 
 また、URLスキーム経由の起動を計測するために、URLスキームが設定されているActivityのonResume()にsendReengageConversionメソッドを実装します。
 
@@ -143,8 +143,6 @@ protected void onResume() {
 	ad.sendReengageConversion(getIntent());
 }
 ```
-
-![sendConversion01](./doc/send_conversion/ja/img01.png)
 
 ## 4. LTV計測の実装
 
@@ -201,6 +199,21 @@ public class MainActivity extends Activity {
 [アクセス解析による課金計測](./doc/analytics_purchase/ja/)
 
 
+## 6. ProGuardを利用する場合
+
+ProGuard を利用してアプリケーションの難読化を行う際は F.O.X SDK のメソッドが対象とならないよう、以下の設定 を追加してください。
+
+```
+-keepattributes *Annotation*
+
+-libraryjars libs/AppAdForce.jar-keep interface jp.appAdForce.** { *; }-keep class jp.appAdForce.** { *; }-keep class jp.co.dimage.** { *; }-keep class com.google.android.gms.ads.identifier.* { *; }-dontwarn jp.appAdForce.android.ane.AppAdForceContext-dontwarn jp.appAdForce.android.ane.AppAdForceExtension-dontwarn com.adobe.fre.FREContext-dontwarn com.adobe.fre.FREExtension-dontwarn com.adobe.fre.FREFunction-dontwarn com.adobe.fre.FREObject-dontwarn com.ansca.**-dontwarn com.naef.jnlua.**
+```
+
+また、GooglePlayServiceSDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。
+
+[Google Play Services導入時のProguard対応](https:/developer.android.com/google/play-services/setup.html#Proguard)
+
+
 ## 疎通テストの実施
 
 マーケットへの申請までに、SDKを導入した状態で十分にテストを行い、アプリケーションの動作に問題がないことを確認してください。
@@ -243,6 +256,5 @@ eeeee
 
 ## 最後に必ずご確認ください（これまで発生したトラブル集）
 
-### hogehoge
-
-fugafuga
+### URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができないCookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
+### URLスキームに大文字が含まれ、正常にアプリに遷移されない環境によって、URL スキームの大文字小文字が判別されないことにより正常に URL スキームの遷移が行えない場合があ ります。URL スキームは全て小文字で設定を行ってください。### F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きいF.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。重複検知が行えない設定では、 同一端末で再インストールされる度に .O.Xは新規のインストールと判定してしまいます。重複検知の精度を向上するために、以下の設定を行ってください。「2.3 広告 ID を利用するための Google Play Services SDK の導入」「3.3 外部ストレージを利用した重複排除設定」
