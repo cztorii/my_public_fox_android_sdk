@@ -211,7 +211,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 
 また、GooglePlayServiceSDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。
 
-[Google Play Services導入時のProguard対応](https:/developer.android.com/google/play-services/setup.html#Proguard)
+[Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
 
 ## 疎通テストの実施
