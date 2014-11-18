@@ -30,7 +30,7 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 
 [SDKリリースページ](https://github.com/cyber-z/public_fox_android_sdk/releases)
 
-既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](https://github.com/cyber-z/public_fox_android_sdk/tree/master/doc/update/ja)をご参照ください。
+既にアプリケーションにSDKが導入されている場合には、[最新バージョンへのアップデートについて](./doc/update/ja)をご参照ください。
 
 ダウンロードしたSDK「FOX_Android_SDK_<version>.zip」を展開し、「AppAdForce.jar」をアプリケーションのプロジェクトに組み込んでください。
 
@@ -38,9 +38,9 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 ![インストール手順](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/integration/ja/img01.png)
 -->
 
-[Eclipseプロジェクトへの導入の方法](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/integration/eclipse/ja/README.md)
+[Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/ja/)
 
-[AndroidStudioプロジェクトへの導入の方法](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/integration/android_studio/ja/README.md)
+[AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/ja/)
 
 
 
@@ -59,7 +59,8 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 ### パーミッションの設定
 
 ```xml:パーミッション
-<uses-permission android:name="android.permission.INTERNET" /><uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
 ### メタデータの設定
@@ -73,22 +74,20 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 
 
 ```xml:メタデータ
-<meta-data android:name="APPADFORCE_APP_ID" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" /><meta-data android:name="APPADFORCE_SERVER_URL" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" /><meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" /><meta-data android:name="ANALYTICS_APP_KEY" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+<meta-data android:name="APPADFORCE_APP_ID" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+<meta-data android:name="APPADFORCE_SERVER_URL" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+<meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+<meta-data android:name="ANALYTICS_APP_KEY" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
 ```
 
 ### インストールリファラ計測の設定
 
 ```xml:インストールリファラ計測
-<receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">	<intent-filter>		<action android:name="com.android.vending.INSTALL_REFERRER" />	</intent-filter></receiver>
-```
-
-
-```xml:２つのINSTALL_REFERRERレシーバーを共存させる場合
-<receiver android:exported="true" android:name="jp.appAdForce.android.InstallReceiver">
+<receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">
 	<intent-filter>
 		<action android:name="com.android.vending.INSTALL_REFERRER" />
 	</intent-filter>
-</receiver><meta-data android:name="APPADFORCE_FORWARD_RECEIVER" android:value="共存させるINSTALL_REFERRERレシーバークラスを入力してください" />
+</receiver>
 ```
 
 ### URLスキームの設定
@@ -96,16 +95,19 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 アプリを外部から起動できるようにするため、起動させる<activity>タグ内に下記の設定を追加してください。
 
 ```xml:sampleapp://で起動させる場合に設定例
-<intent-filter>	<action android:name="android.intent.action.VIEW" />	<category android:name="android.intent.category.DEFAULT" />	<category android:name="android.intent.category.BROWSABLE" />	<data android:scheme="sampleapp" /></intent-filter>
+<intent-filter>
+	<action android:name="android.intent.action.VIEW" />
+	<category android:name="android.intent.category.DEFAULT" />
+	<category android:name="android.intent.category.BROWSABLE" />
+	<data android:scheme="sampleapp" />
+</intent-filter>
 ```
 
-[SDK設定の詳細](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/config_plist/ja/README.md)
+[（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
 
-[（オプション）外部ストレージを利用した重複排除設定](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/external_storage/README.md)
+[（オプション）複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/multi_install_referrer/ja/)
 
-[（オプション）複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/multi_install_referrer/README.md)
-
-[AndroidManifest.xmlサンプル](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/config_android_manifest/AndroidManifest.xml)
+[AndroidManifest.xmlサンプル](./doc/config_android_manifest/AndroidManifest.xml)
 
 
 ## 3. インストール計測の実装
@@ -126,7 +128,7 @@ onCreate() {
 
 sendConversionの引数には、通常は上記の通り@"default"という文字列を入力してください。
 
-[sendConversion:の詳細](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/send_conversion/ja/README.md)
+[sendConversion:の詳細](./doc/send_conversion/ja/)
 
 また、URLスキーム経由の起動を計測するために、URLスキームが設定されているActivityのonResume()にsendReengageConversionメソッドを実装します。
 
@@ -134,13 +136,15 @@ sendConversionの引数には、通常は上記の通り@"default"という文�
 ```java:
 import jp.appAdForce.android.AdManager;
 
-@Overrideprotected void onResume() {
+@Override
+protected void onResume() {
 	super.onResume();
 	AdManager ad = new AdManager(this);
-	ad.sendReengageConversion(getIntent());}
+	ad.sendReengageConversion(getIntent());
+}
 ```
 
-![sendConversion01](https://github.com/cyber-z/public_fox_android_sdk/raw/master/doc/send_conversion/ja/img01.png)
+![sendConversion01](./doc/send_conversion/ja/img01.png)
 
 ## 4. LTV計測の実装
 
@@ -161,12 +165,15 @@ LTV計測を行うためには、各成果地点を識別する成果地点IDを
 ```java:課金計測を行う場合
 import jp.appAdForce.android.LtvManager;
 // ...
-LtvManager ltv = new LtvManager(ad);ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");ltv.sendLtvConversion(成果地点ID);
+LtvManager ltv = new LtvManager(ad);
+ltv.addParam(LtvManager.URL_PARAM_PRICE, "9.99");
+ltv.addParam(LtvManager.URL_PARAM_CURRENCY, "USD");
+ltv.sendLtvConversion(成果地点ID);
 ```
 
 LtvManager.URL_PARAM_CURRENCYには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4217)で定義された通貨コードを指定してください。
 
-[タグを利用したLTV計測について](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/ltv_browser/ja/README.md)
+[タグを利用したLTV計測について](./doc/ltv_browser/ja/)
 
 ## 5. アクセス解析の実装
 
@@ -177,13 +184,21 @@ LtvManager.URL_PARAM_CURRENCYには[ISO 4217](http://ja.wikipedia.org/wiki/ISO_4
 ```java:
 import jp.appAdForce.android.AnalyticsManager;
 
-public class MainActivity extends Activity {	@Override	protected void onResume() {		super.onResume();		AdManager ad = new AdManager(this);		ad.sendReengageConversion(getIntent());
-		AnalyticsManager.sendStartSession(this);	}}
+public class MainActivity extends Activity {
+	@Override
+	protected void onResume() {
+		super.onResume();
+		AdManager ad = new AdManager(this);
+		ad.sendReengageConversion(getIntent());
+
+		AnalyticsManager.sendStartSession(this);
+	}
+}
 ```
 
 > ※アプリケーションが複数の Activity を生成する場合には、それぞれの onResume()に処理を 追加してください。アプリケーションがバックグラウンドから復帰した際に、その Activity に起 動計測の実装がされていない場合など、正確なアクティブユーザー数が計測できなくなります。
 
-[アクセス解析による課金計測](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/analytics_purchase/ja/README.md)
+[アクセス解析による課金計測](./doc/analytics_purchase/ja/)
 
 
 ## 疎通テストの実施
@@ -214,9 +229,9 @@ public class MainActivity extends Activity {	@Override	protected void onResume
 
 ## その他機能の実装
 
-[プッシュ通知の実装](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/notify/ja/README.md)
+[プッシュ通知の実装](./doc/notify/ja/)
 
-[オプトアウトの実装](https://github.com/cyber-z/public_fox_android_sdk/blob/master/doc/optout/ja/README.md)
+[オプトアウトの実装](./doc/optout/ja/)
 
 
 ## FAQ（よくある質問集）
