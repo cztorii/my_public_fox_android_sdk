@@ -1,35 +1,28 @@
 ## 最新バージョンへのアップデートについて
 
 以前のF.O.X SDKが導入されたアプリに最新のSDKを導入する際に必要な手順は以下の通りです。
-1. 以前のバージョンのライブラリファイル及びヘッダファイルがプロジェクトに組み込まれていれば、それらを削除 
-1. 最新バージョンのファイルをプロジェクトに追加1. Xcodeの「Product」→「Clean」を実行
 
-F.O.X iOS SDK v2.12以降では、ライブラリファイルはlibAppAdForce.aのみ提供されます。v2.11以前は個別に分かれていたライブラリは全てlibAppAdForce.aに含まれます。アップデートの際に以下のファイルが組み込まれている場合には全て削除してください。
+1. 以前のバージョンの AppAdForce.jar がプロジェクトに組み込まれていれば、それらを削除
+2.  「2. SDK 導入手順」に従い最新の AppAdForce.jar をプロジェクトに追加3. Eclipse の「プロジェクト」→「クリーン」を実行
 
-* libLtv.a
-* libAnalytics.a
-* libNotify.a
 
-最新版が確実に導入されているかどうかは、setDebugModeメソッドをコールすることで確認できます。
+※「[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](../../google_play_services/ja/)」が未実施の場合には対応してください。
 
-```objectivec
-[[AppAdForceManager sharedManager] setDebugMode:YES];
-```
-以下の出力にバージョン番号がありますので、最新のものと一致しているかを確認してください。
 
-```
- [5160:c07] ===== FORCE OPERATION X DEBUG DESCRIPTION ===== [5160:c07] Force Operation X SDK v2.13.4g
-```
-setDebugModeメソッドは、リリース時には削除してください。
+※「[（オプション）外部ストレージを利用した重複排除設定](../../external_storage/ja/)」が未実施の場合には対応してください。SDK のアップデート後は、必ず効果測定テストを実施し、計測及びアプリケーションの動作に問題ないことを確認して ください。
+## 2.10.4g以前からのアップデート手順
+Android SDK v2.10.4g以前の海外版/グローバル版 SDK (バージョン末尾が u もしくは g)からSDKを最新版にアップデートをする場合、ID の下位互換性のために、次のように AdMangerインスタンスを生成するより以前の位置で必ずupdateFrom2_10_4g()をコールしてください。
+本メソッドにより、v2.10.4g 以前にインストールされた端末において、LTV やアクセス解析の計測を継続することができるようになります。
+```java
+AdManager.updateFrom2_10_4g(); // 必ず new AdManager より前でコールすること
+AdManager ad = new AdManager(this);ad.sendConversion("http://○○○○");```
+> ※v2.10.4g以前のSDKを導入しリリースされたことがあるアプリケーション、例えば v2.10g→v2.10.5g→v2.10.6gとv2.10.4gより後のSDK からのアップデートであっても updateFrom2_10_4g の実装を外さないでください。
+下記バージョンの SDK が過去に導入されたことがあるアプリケーションが、本手順が必要となります。
+v2.7u / v2.7.1u / v2.7.2uv2.8u / v2.8.1uv2.9g / v2.9.1g / v2.9.2gv2.10g / v2.10.1g / v2.10.4g
+> ※末尾に u や g がつかないバージョンからのアップデートの場合には本手順は必要ありません。
+## v.2.14.6g以前からのアップデートに関して
+「[インストールの計測の実装](../../../README.md)」において、v2.14.7gよりURLスキーム経由からのアプリケーション起動時の成果計測に用いるメソッド名を下記のように変更しました。
 
-SDKのアップデート後は、必ず疎通テストを実施し、計測及びアプリケーションの動作に問題ないことを確認してください。
-
-## v2.11.1以前からのアップデート
-
-v2.11.1以前のSDKからのアップデートでは、iAd.frameworkを追加で組み込む必要があります。
-
-## v2.8.1以前からのアップデート
-v2.8.1以前のSDKからのアップデートにおいては、AdSupport.frameworkを追加で組み込む必要があります。
-
-[TOP](https://github.com/cyber-z/public_fox_ios_sdk)
-
+|変更後|sendReengagementConversion(Intent)||変更前|setUrlScheme(Intenet)|
+もし、setUrlSchemeメソッドを用いて実装している場合は、sendReengagementConversionメソッドを呼び出すように修正してください。
+> ※現在のバージョンにおいてもsetUrlSchemeメソッドは利用可能ですが、将来のバージョンアップで削除される可能性があります。尚、sendReengagementConversion メソッドとsetUrlSchemeメソッドの内部処理は同一となっております。
