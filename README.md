@@ -102,6 +102,7 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 	<data android:scheme="sampleapp" />
 </intent-filter>
 ```
+[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
 
 [（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
 
@@ -206,7 +207,19 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 ```
 -keepattributes *Annotation*
 
--libraryjars libs/AppAdForce.jar-keep interface jp.appAdForce.** { *; }-keep class jp.appAdForce.** { *; }-keep class jp.co.dimage.** { *; }-keep class com.google.android.gms.ads.identifier.* { *; }-dontwarn jp.appAdForce.android.ane.AppAdForceContext-dontwarn jp.appAdForce.android.ane.AppAdForceExtension-dontwarn com.adobe.fre.FREContext-dontwarn com.adobe.fre.FREExtension-dontwarn com.adobe.fre.FREFunction-dontwarn com.adobe.fre.FREObject-dontwarn com.ansca.**-dontwarn com.naef.jnlua.**
+-libraryjars libs/AppAdForce.jar
+-keep interface jp.appAdForce.** { *; }
+-keep class jp.appAdForce.** { *; }
+-keep class jp.co.dimage.** { *; }
+-keep class com.google.android.gms.ads.identifier.* { *; }
+-dontwarn jp.appAdForce.android.ane.AppAdForceContext
+-dontwarn jp.appAdForce.android.ane.AppAdForceExtension
+-dontwarn com.adobe.fre.FREContext
+-dontwarn com.adobe.fre.FREExtension
+-dontwarn com.adobe.fre.FREFunction
+-dontwarn com.adobe.fre.FREObject
+-dontwarn com.ansca.**
+-dontwarn com.naef.jnlua.**
 ```
 
 また、GooglePlayServiceSDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。
@@ -256,5 +269,23 @@ eeeee
 
 ## 最後に必ずご確認ください（これまで発生したトラブル集）
 
-### URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができないCookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
-### URLスキームに大文字が含まれ、正常にアプリに遷移されない環境によって、URL スキームの大文字小文字が判別されないことにより正常に URL スキームの遷移が行えない場合があ ります。URL スキームは全て小文字で設定を行ってください。### F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きいF.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。重複検知が行えない設定では、 同一端末で再インストールされる度に .O.Xは新規のインストールと判定してしまいます。重複検知の精度を向上するために、以下の設定を行ってください。「2.3 広告 ID を利用するための Google Play Services SDK の導入」「3.3 外部ストレージを利用した重複排除設定」
+### URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
+
+Cookie 計測を行いブラウザを起動した場合には、URL スキームを利用してアプリケーションに遷移します。 この際、独自の URL スキームが設定されている必要があります。
+
+
+### URLスキームに大文字が含まれ、正常にアプリに遷移されない
+
+環境によって、URL スキームの大文字小文字が判別されないことにより正常に URL スキームの遷移が行えない場合があ ります。URL スキームは全て小文字で設定を行ってください。
+
+
+### F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
+
+F.O.Xではいくつかの方式を組み合わせて端末の重複インストール検知を行っています。
+重複検知が行えない設定では、同一端末でも再インストールされる度にF.O.Xは新規のインストールと判定してしまいます。
+
+重複検知の精度を向上するために、以下の設定を行ってください。
+
+[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
+
+[（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
