@@ -2,32 +2,28 @@
 
 会員登録や商品購入等がWebページで行われる場合に、imgタグを利用してLTV計測を利用することができます。
 
-F.O.XのLTV計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合にはltvOpenBrowser、アプリ内WebViewの場合にはsetLtvCookieメソッドを利用することで、F.O.XがLTV計測に必要な情報をブラウザのCookieに記録します。
+F.O.XのLTV計測は、外部ブラウザ、アプリ内WebViewの両方に対応しています。外部ブラウザの場合にはltvOpenBrowser:、アプリ内WebViewの場合にはsetLtvCookieメソッドを利用することで、F.O.XがLTV計測に必要な情報をブラウザのCookieに記録します。
 
 ### 外部ブラウザでのLTV計測
 
-アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、ltvOpenBrowserメソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
+アプリケーションから外部ブラウザを起動し、外部ブラウザで表示したWebページでタグ計測を行う場合は、ltvOpenBrowser:メソッドを利用して外部ブラウザを起動してください。引数には、外部ブラウザで表示するURLを文字列で指定します。
 
-```java
-import jp.appAdForce.android.LtvManager;
-
+```objectivec
+#import "Ltv.h"
 // ...
-AdManager ad = new AdManager(this);
-LtvManager ltv = new LtvManager(ad);
-ltv.ltvOpenBrowser("http://yourhost.com/");
+AppAdForceLtv *ltv = [[[AppAdForceLtv alloc] init] autorelease];
+[ltv ltvOpenBrowser:@"http://yourhost.com/"];
 ```
 
 ### アプリ内WebViewでのLTV計測
 
 ユーザーの遷移がWebView内で行われる場合には、setLtvCookieを利用することができます。WebViewが生成される箇所で下記コードを実行してください。WebViewが複数回生成・破棄される場合には、生成される度にsetLtvCookieが実行されるようにしてください。内部的にNSHTTPCookieStorageを利用してCookieをセットします。
 
-```java
-import jp.appAdForce.android.LtvManager;
-
+```objectivec
+#import "Ltv.h"
 // ...
-AdManager ad = new AdManager(this);
-LtvManager ltv = new LtvManager(ad);
-ltv.ltvOpenBrowser("http://yourhost.com/");
+AppAdForceLtv *ltv = [[[AppAdForceLtv alloc] init] autorelease];
+[ltv setLtvCookie];
 ```
 
 ### タグの実装
