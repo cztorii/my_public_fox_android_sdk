@@ -34,10 +34,6 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 
 ダウンロードしたSDK「FOX_Android_SDK_<version>.zip」を展開し、「AppAdForce.jar」をアプリケーションのプロジェクトに組み込んでください。
 
-<!--
-![インストール手順](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/integration/ja/img01.png)
--->
-
 [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/ja/)
 
 [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/ja/)
@@ -46,11 +42,6 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 
 ## 2. 設定
 
-<!--
-![フレームワーク設定01](https://github.com/cyber-z/public_fox_ios_sdk/raw/master/doc/config_framework/ja/img01.png)
-
-[フレームワーク設定の詳細](https://github.com/cyber-z/public_fox_ios_sdk/blob/master/doc/config_framework/ja/README.md)
--->
 
 * **SDK設定**
 
@@ -58,12 +49,25 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 
 ### パーミッションの設定
 
-```xml:パーミッション
+<Manifest>タグ内に次のパーミッションの設定を追加します。
+
+```xml:
 <uses-permission android:name="android.permission.INTERNET" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
 ### メタデータの設定
+
+SDKの実行に必要な情報を<application>タグ内に追加します。
+
+```xml:
+<meta-data android:name="APPADFORCE_APP_ID" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+<meta-data android:name="APPADFORCE_SERVER_URL" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+<meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+<meta-data android:name="ANALYTICS_APP_KEY" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
+```
+
+設定するキーとバリューは以下の通りです。
 
 |パラメータ名|必須|概要|
 |:------|:------|:------|
@@ -73,16 +77,10 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 |ANALYTICS_APP_KEY|必須|Force Operation X管理者より連絡しますので、その値を入力してください。|
 
 
-```xml:メタデータ
-<meta-data android:name="APPADFORCE_APP_ID" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
-<meta-data android:name="APPADFORCE_SERVER_URL" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
-<meta-data android:name="APPADFORCE_CRYPTO_SALT" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
-<meta-data android:name="ANALYTICS_APP_KEY" android:value="Force Operation X管理者より連絡しますので、その値を入力してください。" />
-```
-
 ### インストールリファラ計測の設定
+インストールリファラーを用いたインストール計測を行うために下記の設定を<application>タグに追加します。
 
-```xml:インストールリファラ計測
+```xml:
 <receiver android:name="jp.appAdForce.android.InstallReceiver" android:exported="true">
 	<intent-filter>
 		<action android:name="com.android.vending.INSTALL_REFERRER" />
@@ -90,23 +88,28 @@ SDKの動作に必要な設定をAndroidManifest.xmlに追加します。
 </receiver>
 ```
 
+既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合には、[二つのINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/integration/android_studio/ja/)をご参照ください。
+
+
 ### URLスキームの設定
 
-アプリを外部から起動できるようにするため、起動させる<activity>タグ内に下記の設定を追加してください。
+アプリを外部から起動できるようにするため、起動させる対象の<activity>タグ内に下記の設定を追加してください。
 
-```xml:sampleapp://で起動させる場合に設定例
+```xml:
 <intent-filter>
 	<action android:name="android.intent.action.VIEW" />
 	<category android:name="android.intent.category.DEFAULT" />
 	<category android:name="android.intent.category.BROWSABLE" />
-	<data android:scheme="sampleapp" />
+	<data android:scheme="任意のURLスキームを記入します" />
 </intent-filter>
 ```
+
+> 環境によっては、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字の英数字を用いて設定を行ってください。
+
+
 [（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
 
 [（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
-
-[（オプション）複数のINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/multi_install_referrer/ja/)
 
 [AndroidManifest.xmlサンプル](./doc/config_android_manifest/AndroidManifest.xml)
 
@@ -149,7 +152,7 @@ protected void onResume() {
 
 会員登録、チュートリアル突破、課金など任意の成果地点にLTV計測を実装することで、流入元広告のLTVを測定することができます。LTV計測が不要の場合には、本項目の実装を省略できます。
 
-```java:LTV計測の実装
+```java:
 import jp.appAdForce.android.LtvManager;
 // ...
 AdManager ad = new AdManager(this);
@@ -161,7 +164,7 @@ LTV計測を行うためには、各成果地点を識別する成果地点IDを
 
 課金計測を行う場合には、課金が完了した箇所で以下のように課金額と通貨コードを指定してください。
 
-```java:課金計測を行う場合
+```java:
 import jp.appAdForce.android.LtvManager;
 // ...
 LtvManager ltv = new LtvManager(ad);
@@ -222,7 +225,7 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 -dontwarn com.naef.jnlua.**
 ```
 
-また、GooglePlayServiceSDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。
+また、Google Play Service SDK を導入されている場合は、以下のページで記載されている keep 指定が記述されているかご確認ください。
 
 [Google Play Services導入時のProguard対応](https://developer.android.com/google/play-services/setup.html#Proguard)
 
@@ -260,13 +263,6 @@ ProGuard を利用してアプリケーションの難読化を行う際は F
 [オプトアウトの実装](./doc/optout/ja/)
 
 
-## FAQ（よくある質問集）
-
-### aaaaa
-
-eeeee
-
-
 ## 最後に必ずご確認ください（これまで発生したトラブル集）
 
 ### URLスキームの設定がされずリリースされたためブラウザからアプリに遷移ができない
@@ -276,7 +272,7 @@ Cookie 計測を行いブラウザを起動した場合には、URL スキ
 
 ### URLスキームに大文字が含まれ、正常にアプリに遷移されない
 
-環境によって、URL スキームの大文字小文字が判別されないことにより正常に URL スキームの遷移が行えない場合があ ります。URL スキームは全て小文字で設定を行ってください。
+環境によって、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字で設定を行ってください。
 
 
 ### F.O.Xで確認できるインストール数の値がGoogle Play Developer Consoleの数字より大きい
