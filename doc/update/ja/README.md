@@ -25,7 +25,7 @@ Android SDK v2.10.4g以前の海外版/グローバル版 SDK (バージョン�
 ```java
 AdManager.updateFrom2_10_4g(); // 必ずnew AdManager より前でコールすること
 AdManager ad = new AdManager(this);
-ad.sendConversion("http://○○○○");
+ad.sendConversion("default");
 ```
 
 > ※v2.10.4g以前のSDKを導入しリリースされたことがあるアプリケーション、例えば v2.10g→v2.10.5g→v2.10.6gとv2.10.4gより後のSDK からのアップデートであっても updateFrom2_10_4g の実装を外さないでください。
