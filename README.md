@@ -36,8 +36,9 @@ F.O.Xで計測された情報を使い、ユーザーに対してプッシュ通
 
 [Eclipseプロジェクトへの導入の方法](./doc/integration/eclipse/ja/)
 
+<!--
 [AndroidStudioプロジェクトへの導入の方法](./doc/integration/android_studio/ja/)
-
+-->
 
 
 ## 2. 設定
