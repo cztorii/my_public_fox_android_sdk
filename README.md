@@ -88,7 +88,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 </receiver>
 ```
 
-既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合には、[二つのINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/integration/android_studio/ja/)をご参照ください。
+既に"com.android.vending.INSTALL_REFERRER"に対するレシーバークラスが定義されている場合には、[二つのINSTALL_REFERRERレシーバーを共存させる場合の設定](./doc/install_referrer/ja/)をご参照ください。
 
 
 ### URLスキームの設定
