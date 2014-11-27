@@ -27,7 +27,10 @@ import jp.appAdForce.android.LtvManager;
 // ...
 AdManager ad = new AdManager(this);
 LtvManager ltv = new LtvManager(ad);
-ltv.ltvOpenBrowser("http://yourhost.com/");
+ltv.setLtvCookie();
+
+// setLtvCookieを実行した後に、WebViewの表示を行います。
+// ...
 ```
 
 ### タグの実装
