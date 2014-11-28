@@ -23,15 +23,24 @@ F.O.Xのプッシュ通知機能は、Googleが提供するGCM(Google Cloud Mess
 
 ```xml
 <uses-permission android:name="android.permission.WAKE_LOCK" />
-<uses-permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" /><permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" android:protectionLevel="signature" /><uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+<uses-permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" />
+<permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
 
 ### プッシュ通知用レシーバーの設定
 
-下記のように、プッシュ通知を受け取るために必要なレシーバーの設定を<application>タグ内に追加してください。
+下記のように、プッシュ通知を受け取るために必要なレシーバーの設定を＜application＞タグ内に追加してください。
 
 ```xml
-<receiver android:name="jp.appAdForce.android.NotifyReceiver"         android:permission="com.google.android.c2dm.permission.SEND">	<intent-filter>		<action android:name="com.google.android.c2dm.intent.RECEIVE" />         <action android:name="com.google.android.c2dm.intent.REGISTRATION" />         <category android:name="アプリのパッケージ名" />	</intent-filter></receiver>
+<receiver android:name="jp.appAdForce.android.NotifyReceiver"
+	android:permission="com.google.android.c2dm.permission.SEND">
+	<intent-filter>
+		<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+		<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+		<category android:name="アプリのパッケージ名" />
+	</intent-filter>
+</receiver>
 ```
 
 ### 二つのレシーバーを共存させる場合
