@@ -8,29 +8,30 @@ F.O.Xのプッシュ通知機能は、Googleが提供するGCM(Google Cloud Mess
 - Androidプロジェクトを選択し、右クリック→「プロパティー」を選択
 - 左のメニューから「Javaのビルド・パス」を選択
 - 右側のメイン画面にある「ライブラリー」タブを選択
-- メイン画面の右側にある「外部Jar追加」を選択
+- メイン画面の右側にある「Jar追加」を選択
 - Androidプロジェクトの「libs」フォルダーに配置した「gcm.jar」を選択
 - メイン画面に「gcm.jar」が表示されていることを確認
 
-＜＜＜＜＜画像が入ります＞＞＞＞＞
+![notify01](./img01.png)
+![notify02](./img02.png)
 
 
 ## AndroidManifest.xmlの設定
 
 ### パーミッションの設定
 
-下記のように、プッシュ通知の実行に必要なパーミッションの設定を<manifest>タグ内に追加してください。
+下記のように、プッシュ通知の実行に必要なパーミッションの設定を\<manifest\>タグ内に追加してください。
 
 ```xml
 <uses-permission android:name="android.permission.WAKE_LOCK" />
 <uses-permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" />
-<permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+<permission android:name="アプリのパッケージ名.permission.C2D_MESSAGE" android:protectionLevel="signature" />
 <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
 
 ### プッシュ通知用レシーバーの設定
 
-下記のように、プッシュ通知を受け取るために必要なレシーバーの設定を＜application＞タグ内に追加してください。
+下記のように、プッシュ通知を受け取るために必要なレシーバーの設定を\<application\>タグ内に追加してください。
 
 ```xml
 <receiver android:name="jp.appAdForce.android.NotifyReceiver"
