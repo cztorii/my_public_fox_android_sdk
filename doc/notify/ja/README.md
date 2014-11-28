@@ -79,7 +79,39 @@ public void onCreate(Bundle savedInstanceState) {
 }
 ```
 
-××××の部分には、ProjectNumberを入力してください。
+GCMegistrar.registerの第二引数には、Project番号を入力してください。
+
+### Project番号とAPI KEYの取得について
+
+1. https://console.developers.google.com/project にアクセスします。
+2. APIプロジェクトを作成していない場合は、「プロジェクトを作成」を押下し、プロジェクトを作成します。
+
+![notify03](./img03.png)
+
+3. プロジェクトを選択します。
+4. 画面上部にプロジェクト番号が表示されているので、こちらの値を参照してください。
+
+
+![notify04](./img04.png)
+
+
+5. 画面左側のメニューから「APIと認証」＞「API」を選択します。
+6. Google Cloud Messaging for Androidのステータスをオンにします。
+
+![notify06](./img05.png)
+
+7. 画面左側のメニューから「APIと認証」＞「認証情報」を選択します。
+
+![notify06](./img06.png)
+
+8. APIキーを作成していない場合は、公開APIへのアクセスの「新しいキーを作成」を押下、「サーバー キー」を選択し、APIキーを作成します。
+
+
+9. 作成したキーのAPIキーを取得します。
+
+
+![notify06](./img08.png)
+
 
 ## 遷移先指定
 
