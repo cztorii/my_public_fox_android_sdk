@@ -20,7 +20,7 @@ F.O.Xのプッシュ通知機能は、Googleが提供するGCM(Google Cloud Mess
 
 ### パーミッションの設定
 
-下記のように、プッシュ通知の実行に必要なパーミッションの設定を\<manifest\>タグ内に追加してください。
+下記のように、プッシュ通知を受け取るために必要なパーミッションの設定を\<manifest\>タグ内に追加してください。
 
 ```xml
 <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -56,4 +56,41 @@ com.google.android.c2dm.intent.RECEIVEとcom.google.android.c2dm.intent.REGISTRA
 
 
 ## Main Activityの設定
+
+アプリケーションの起動時に呼び出されるActivityのonCreate()に次の処理を実装します。
+
+```java
+import jp.appAdForce.android.AdManager;
+import jp.appAdForce.android.NotifyManager;
+
+@Override
+public void onCreate(Bundle savedInstanceState) {
+	
+	//...
+
+	AdManager ad = new AdManager(this);
+	ad.sendConversion("default");
+	
+	NotifyManager notifyManager = new NotifyManager(this, ad);
+	String regId = notifyManager.getRegistrationId();
+	if ("".equals(regId)||regId == null) {
+		GCMRegistrar.register(this, ××××);
+	}
+}
+```
+
+××××の部分には、ProjectNumberを入力してください。
+
+## 遷移先指定
+
+Push通知をタップした際に、アプリ内の任意の地点を開くことが可能です。遷移先のURLスキームは、FOXの管理画面で設定することができます。
+
+AndroidManifest.xml上で、Push通知のタップ時に起動させたいActivityタグ内にURLスキームの設定を行ってください。
+
+例として、"foo://bar"というURLスキームでExampleActiviyを起動させたい場合の設定を記載します。
+
+```xml
+<activity android:name=".ExampleActivity" >
+	<intent-filter>		<category android:name="android.intent.category.DEFAULT" />		<category android:name="android.intent.category.BROWSABLE" />		<action android:name="android.intent.action.VIEW" />		<data android:host="fuga" android:scheme="hoge" />	</intent-filter></activity>
+```
 
