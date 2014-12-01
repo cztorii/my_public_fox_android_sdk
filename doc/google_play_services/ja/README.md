@@ -30,10 +30,26 @@ Google Play Services SDKをインストールしていない場合は、Android 
 #### Eclipseを利用する場合
 
 Eclipseのメニューの「ファイル」>「インポート」から、「Android」>「Existing Android Code into Workspace」を選択します。
+
+
+![googlePlayServices01](./img02.png)
+
+
+![googlePlayServices01](./img03.png)
+
+
 <android-sdk>/extras/google/google_play_services/libproject/google-play-services_lib/にあるGoogle Play Servicesのライブラリプロジェクトをインポートします。
+
+
+![googlePlayServices01](./img04.png)
+
 
 アプリケーションのプロジェクトを右クリックし、「プロパティ」を選択。左のメニューから「Android」を選択します。右側のライブラリの「
 追加」ボタンから、先程インポートしたGoogle Play Servicesのライブラリプロジェクトをアプリケーションから参照できるようにします。
+
+
+![googlePlayServices01](./img05.png)
+
 
 #### Android Studioを利用する場合
 
@@ -48,6 +64,10 @@ dependencies {
 > Google Play servicesの最新のバージョンはAndroidのデベロッパーサイトにて確認するようにしてください。
 
 [Google Play Services | Android Developers](https://developer.android.com/google/play-services/index.html)
+
+
+![googlePlayServices01](./img05.png)
+
 
 ## Google Play Servicesを利用するための設定
 

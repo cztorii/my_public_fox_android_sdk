@@ -108,7 +108,7 @@ SDKの実行に必要な情報を<application>タグ内に追加します。
 > 環境によっては、URLスキームの大文字小文字が判別されないことにより正常に URLスキームの遷移が行えない場合があります。URLスキームは全て小文字の英数字を用いて設定を行ってください。
 
 
-[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
+[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
 
 [（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
 
