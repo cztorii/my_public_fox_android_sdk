@@ -12,9 +12,11 @@ Force Operation X Android SDKはGoogle Playデベロッパープログラ�
 [Setting Up Google Play Services | Android Developers](https://developer.android.com/google/play-services/setup.html)
 
 
-以下に、2014年11月時点での、Google Play Services SDKの導入方法を記載致します。
 
 ## Google Play Services SDKの取得
+
+以下に、2014年11月時点での、Google Play Services SDKの導入方法を記載致します。
+
 
 Google Play Services SDKをインストールしていない場合は、Android SDK Managerからパッケージを取得します。
 
@@ -35,14 +37,17 @@ Eclipseのメニューの「ファイル」>「インポート」から、「And
 
 #### Android Studioを利用する場合
 
-* アプリケーションのモジュールディレクトリにあるbuild.gradleを開きます。
-* 下記のように、最新のGoogle Play servicesへのdependenciesの設定をbuild.gradleに追記します。
+アプリケーションのモジュールディレクトリにあるbuild.gradleを開き、下記のように、最新のGoogle Play servicesへのdependenciesの設定を追記します。
 
 ```
 dependencies {
 	compile 'com.google.android.gms:play-services:6.1.+'
 }
 ```
+
+> Google Play servicesの最新のバージョンはAndroidのデベロッパーサイトにて確認するようにしてください。
+
+[Google Play Services | Android Developers](https://developer.android.com/google/play-services/index.html)
 
 ## Google Play Servicesを利用するための設定
 
