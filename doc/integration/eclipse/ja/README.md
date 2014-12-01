@@ -2,7 +2,7 @@
 
 EclipseプロジェクトへAppAdForce.jarを外部jarとして追加する方法は以下の通りです。
 
-* アプリケーションプロジェクトの「libs」フォルダー配下にAddAdForce.jarをコピー
+* アプリケーションプロジェクトの「libs」フォルダー配下にAppAdForce.jarをコピー
 
 
 ![integration01](./img01.png)
