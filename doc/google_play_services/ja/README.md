@@ -66,7 +66,7 @@ dependencies {
 [Google Play Services | Android Developers](https://developer.android.com/google/play-services/index.html)
 
 
-![googlePlayServices01](./img05.png)
+![googlePlayServices01](./img06.png)
 
 
 ## Google Play Servicesを利用するための設定
