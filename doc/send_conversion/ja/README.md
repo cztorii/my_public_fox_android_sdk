@@ -2,7 +2,7 @@
 
 sendConversionメソッドを利用することで、インストール計測を行うことができます。Cookie計測を利用する場合には、外部ブラウザが起動されます。この際、外部ブラウザの遷移先をsendConversionの引数にURL文字列を指定することができます。
 
-プロジェクトのソースコードを編集し、Application Delegateのapplication:didFinishLaunchingWithOptions:に次の通り実装を行ってください。
+プロジェクトのソースコードを編集し、アプリケーションの起動時に呼び出されるActivityに対して、次の通り実装を行ってください。
 
 > 【ご注意】
 sendConversionは、特に理由がない限りはアプリケーションの起動時に呼び出されるActivityのonCreate内に実装してください。それ以外の箇所に実装された場合にはインストール数が正確に計測できない場合があります。
