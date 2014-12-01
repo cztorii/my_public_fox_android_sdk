@@ -14,27 +14,37 @@ Force Operation X Android SDKはGoogle Playデベロッパープログラ�
 
 以下に、2014年11月時点での、Google Play Services SDKの導入方法を記載致します。
 
-### Google Play Services SDKの取得
+## Google Play Services SDKの取得
 
 Google Play Services SDKをインストールしていない場合は、Android SDK Managerからパッケージを取得します。
 
-* Android SDK Managerを起動します
-* Extrasディレクトリ配下のGoogle Play servicesにチェックをいれ、パッケージをインストールします
+* Android SDK Managerを起動します。
+* Extrasディレクトリ配下のGoogle Play servicesにチェックをいれ、パッケージをインストールします。
 
 ![googlePlayServices01](./img01.png)
 
-### Google Play Servicesの参照
+## Google Play Servicesの導入
 
-#### Eclipseをご利用の場合
+#### Eclipseを利用する場合
 
-Eclipseのメニューの「ファイル」>「インポート」から、「Android」>「Existing Android Code into Workspace」を選択。
+Eclipseのメニューの「ファイル」>「インポート」から、「Android」>「Existing Android Code into Workspace」を選択します。
 <android-sdk>/extras/google/google_play_services/libproject/google-play-services_lib/にあるGoogle Play Servicesのライブラリプロジェクトをインポートします。
 
 アプリケーションのプロジェクトを右クリックし、「プロパティ」を選択。左のメニューから「Android」を選択します。右側のライブラリの「
 追加」ボタンから、先程インポートしたGoogle Play Servicesのライブラリプロジェクトをアプリケーションから参照できるようにします。
 
+#### Android Studioを利用する場合
 
-### Google Play Servicesを利用するための設定
+* アプリケーションのモジュールディレクトリにあるbuild.gradleを開きます。
+* 下記のように、最新のGoogle Play servicesへのdependenciesの設定をbuild.gradleに追記します。
+
+```
+dependencies {
+	compile 'com.google.android.gms:play-services:6.1.+'
+}
+```
+
+## Google Play Servicesを利用するための設定
 
 #### AndroidManifest.xmlの編集
 

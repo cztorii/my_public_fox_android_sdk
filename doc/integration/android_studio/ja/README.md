@@ -7,7 +7,7 @@ Android StudioプロジェクトへAppAdForce.jarを追加する方法は以下�
 
 ![integration01](./img01.png)
 
-
+* アプリケーションのモジュールディレクトリにあるbuild.gradleを開きます。
 * AppAdForce.jarへのパスをbuild.gradleに追記します。
 
 ```
