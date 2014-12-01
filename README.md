@@ -286,6 +286,6 @@ F.O.Xではいくつかの方式を組み合わせて端末の重複インスト
 
 重複検知の精度を向上するために、以下の設定を行ってください。
 
-[（オプション）広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
+[広告IDを利用するためのGoogle Play Services SDKの導入](./doc/google_play_services/ja/)
 
 [（オプション）外部ストレージを利用した重複排除設定](./doc/external_storage/ja/)
